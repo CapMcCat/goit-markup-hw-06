@@ -1,16 +1,18 @@
 /* 
-Создана разметка и набраны стили формы подписки на рассылку в футере.
++Создана разметка и набраны стили формы подписки на рассылку в футере.
 
-В модальном окне есть разметка формы заявки.
++В модальном окне есть разметка формы заявки.
 
-Выполнена разметка и оформление всех иконок в полях формы.
++Выполнена разметка и оформление всех иконок в полях формы.
 
-При получении полем фокуса - иконка и рамка инпута меняют цвет 
++При получении полем фокуса - иконка и рамка инпута меняют цвет 
 (как показано на макете активного состояния элементов формы).
 
-Оригинальный чекбокс о принятии лицензионного соглашения в форме заявки скрыт, 
++Оригинальный чекбокс о принятии лицензионного соглашения в форме заявки скрыт, 
 а его визуальное оформление сделано вручную, 
 при помощи псевдоэлемента и векторного изображения галочки.
+
+Доп требования
 
 У всех инпутов в формах прописан атрибут name.
 
@@ -39,6 +41,7 @@
   --time-function: cubic-bezier(0.4, 0, 0.2, 1);
   --transition-time: 250ms;
   --secondary-overlay-color: rgba(47, 48, 58, 0.8);
+  --button-hover-color: #188ce8;
 }
 
 *,
@@ -300,8 +303,7 @@ contacts-icon:focus {
 
 .modal-open-button:hover,
 .modal-open-button:focus {
-  color: var(--primary-color);
-  background-color: var(--secondary-light-bgc);
+  background-color: var(--button-hover-color);
   cursor: pointer;
 }
 
@@ -687,6 +689,75 @@ contacts-icon:focus {
   background-color: var(--accent-color);
 }
 
+.subscribe-form {
+  margin-left: auto;
+}
+
+.subcribe-call {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 14px;
+  line-height: 1.142;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--main-white-color);
+}
+
+.modal-form-comment::placeholder {
+  font-size: 16px;
+  line-height: 1.25;
+  align-items: center;
+  letter-spacing: 0.03em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.subscribe-form-input {
+  display: inline-block;
+  padding-left: 16px;
+  margin-right: 12px;
+  min-width: 358px;
+  height: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
+  border-radius: 4px;
+  background-color: transparent;
+  color: var(--main-white-color);
+
+  transition: border-color var(--transition-time) var(--time-function);
+}
+
+.subscribe-form-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.subscribe-form-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 200px;
+  height: 50px;
+  border-radius: 4px;
+
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  border: none;
+  background: var(--accent-color);
+  color: var(--main-white-color);
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 1.875;
+
+  transition: background-color var(--transition-time) var(--time-function);
+}
+
+.subscribe-form-btn-icon {
+  margin-left: 10px;
+}
+
+.subscribe-form-btn:hover,
+.subscribe-form-btn:focus {
+  background-color: var(--button-hover-color);
+}
 /* ============FOOTER END============ */
 
 /* ============PORTFOLIO PAGE ============ */
@@ -904,6 +975,7 @@ contacts-icon:focus {
 }
 
 .modal-form-input-label {
+  margin-bottom: 10px;
   font-size: 12px;
   line-height: 1.167;
   letter-spacing: 0.01em;
@@ -915,13 +987,16 @@ contacts-icon:focus {
   position: relative;
   display: block;
 }
+
 .modal-form-input {
   display: block;
+  margin-top: 4px;
+  padding-left: 42px;
   width: 100%;
   height: 40px;
   border: 1px solid rgba(33, 33, 33, 0.2);
   border-radius: 4px;
-  padding-left: 42px;
+
   transition: border-color var(--transition-time) var(--time-function);
 }
 
@@ -943,17 +1018,20 @@ contacts-icon:focus {
 }
 
 .modal-form-comment {
-  font-size: 14px;
-  line-height: 1.143;
-  letter-spacing: 0.01em;
   display: block;
+  margin-top: 4px;
+  padding: 16px;
   width: 100%;
   height: 120px;
   border: 1px solid rgba(33, 33, 33, 0.2);
   border-radius: 4px;
   resize: none;
-  transition: border-color 250ms linear;
-  padding: 15px;
+
+  font-size: 14px;
+  line-height: 1.143;
+  letter-spacing: 0.01em;
+
+  transition: border-color var(--transition-time) var(--time-function);
 }
 
 .modal-form-comment:focus {
@@ -969,11 +1047,40 @@ contacts-icon:focus {
   color: var(--accent-color);
 }
 
+.modal-form-label-policy {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.modal-form-label-policy::before {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 1px solid var(--primary-color);
+  content: "";
+  margin-right: 10px;
+}
+
+.modal-form-policy-check:checked + .modal-form-label-policy::before {
+  background-color: var(--accent-color);
+  background-image: url(../images/modal/icon-check.svg);
+  border-color: transparent;
+  background-size: contain;
+  background-origin: border-box;
+}
+
+.modal-form-policy-check:focus + .modal-form-label-policy::before {
+  box-shadow: 0 0 0 2px var(--accent-color);
+}
+
 .modal-form-btn {
   margin-top: 30px;
+  padding: 10px 55px;
   min-width: 200px;
   border-radius: 4px;
-  padding: 10px 55px;
+  border: none;
   font-weight: 700;
   font-size: 16px;
   line-height: 1.875;
@@ -983,6 +1090,12 @@ contacts-icon:focus {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   align-self: center;
+  transition: bbackground-color var(--transition-time) var(--time-function);
+}
+
+.modal-form-btn:hover,
+.modal-form-btn:focus {
+  background-color: var(--button-hover-color);
 }
 
 /* ============MODAL WINDOW END============ */
